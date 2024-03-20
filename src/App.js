@@ -24,6 +24,7 @@ function App() {
       setList(response.data.query.search);
     }
 
+
     if (term && !list.length) {
       searchAPI();
     } else {
@@ -35,6 +36,7 @@ function App() {
 
       return () => {
         clearTimeout(deobounce);
+        setList([])
       }
     }
   },[term, list.length])
@@ -60,7 +62,7 @@ function App() {
                 <Form.Control
                   type="text"
                   placeholder='Search'
-                  onChange={(e) => setTerm(e.target.value)}
+                  onChange={(e) => setTerm(e.target.value) }
                   value={term}
                 />
               </Form.Group>
@@ -76,7 +78,9 @@ function App() {
                   <th>Description</th>
                 </tr>
               </thead>
-              <tbody>{showList}</tbody>
+              <tbody>
+                {showList}
+              </tbody>
             </table>
           </Col>
         </Row>
